@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
 
+#Having trouble merging so adding this line in
+
 end
