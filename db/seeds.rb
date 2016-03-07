@@ -17,6 +17,9 @@ posts = Post.all
   )
 end
 
+Post.find_or_create_by(title: "Title of my assignment", body: "The body of my assignment number 30")
+puts "#{Post.count} posts in our database now!"
+
 puts "Seed finished"
 puts "#{Post.count} posts created"
 puts "#{Comment.count} comments created"
