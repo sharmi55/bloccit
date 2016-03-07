@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
+  resources :posts
+  # instead of line above, also generated intiially as:
+  # get "posts/index"
+  # get "posts/show"
+  # get "posts/new"
+  # get "posts/edit"
 
-  get 'welcome/about'
+  get 'about' => 'welcome#about'
+# instead of line above, also generated initially as:
+# get "welcome/index"
+# get "welcome/about"
 
   root 'welcome#index'
-
-#Having trouble merging so adding this line in
 
 end

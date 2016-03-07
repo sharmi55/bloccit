@@ -1,0 +1,15 @@
+<h1>All Posts</h1>
+
+<% @posts.each do |post| %>
+
+<!--first it was this: <p><%= link_to post.title, post_path(post.id) %></p>-->
+<!-- then it was this:<p><%= link_to post.title, post %></p> -->
+<!--Now just use boot strap to style posts index view-->
+<div class="media">
+     <div class="media-body">
+       <h4 class="media-heading">
+         <%= link_to post.title, post %>
+       </h4>
+     </div>
+   </div>
+<% end %>
