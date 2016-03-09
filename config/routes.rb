@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :questions
   resources :posts
   # instead of line above, also generated intiially as:
   # get "posts/index"
