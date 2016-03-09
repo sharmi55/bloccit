@@ -68,11 +68,6 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-
     it "renders the #edit view" do
       get :edit, {id: my_post.id}
       expect(response).to render_template :edit

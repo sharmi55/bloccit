@@ -1,4 +1,3 @@
-require 'random_data'
 include RandomData
 
 50.times do
@@ -7,7 +6,6 @@ include RandomData
     body: RandomData.random_paragraph
   )
 end
-
 posts = Post.all
 
 
@@ -21,7 +19,7 @@ end
 
 100.times do
   Question.create!(
-    post: posts.sample,
+    title: RandomData.random_sentence,
     body: RandomData.random_paragraph,
     resolved: false
   )
