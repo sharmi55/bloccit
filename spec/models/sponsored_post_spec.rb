@@ -10,7 +10,7 @@ RSpec.describe SponsoredPost, type: :model do
          expect(sponsored_post).to respond_to(:title)
        end
 
-       it "responds to bopy" do
+       it "responds to body" do
          expect(sponsored_post).to respond_to(:body)
       end
 
