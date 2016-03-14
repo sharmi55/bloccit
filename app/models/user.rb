@@ -1,9 +1,16 @@
 class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
+  before_save { self.name = name}
+
+  names = Name.new
+   names.split.each do |n|
+     firstname = name.first
+     lastname =name.last
+p "#{firstname.capitalize} #{lastname.capitalize}"
 
 # #3
-  validates :name, length: { minimum: 1, maximum: 100 }, presence: true
+validates :name, length: { minimum: 1, maximum: 100 }, presence: true
 # #4
  validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
  validates :password, length: { minimum: 6 }, allow_blank: true
