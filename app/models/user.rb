@@ -1,15 +1,12 @@
 class User < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
-  before_save { self.name = name}
+  before_save :format_name
 
-  names = Name.new
-   names.split.each do |n|
-     firstname = name.first
-     lastname =name.last
-p "#{firstname.capitalize} #{lastname.capitalize}"
+def format_name
+  "name".split.each {|n| n.capitalize}.join(" ")
+end
 
-# #3
 validates :name, length: { minimum: 1, maximum: 100 }, presence: true
 # #4
  validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
