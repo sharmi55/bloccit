@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get "posts/show"
   # get "posts/new"
   # get "posts/edit"
-
+  post 'users/confirm' => 'users#confirm'
   get 'about' => 'welcome#about'
 # instead of line above, also generated initially as:
 # get "welcome/index"
