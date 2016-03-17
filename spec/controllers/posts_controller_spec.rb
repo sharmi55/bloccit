@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+include RandomData
 include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
@@ -64,7 +64,6 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-#OTHER TEST
 
 context "signed-in user" do
   before do
