@@ -3,6 +3,8 @@ class Post < ActiveRecord::Base
   belongs_to :topic
   belongs_to :user
 
+  after_create :create_favorite
+
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -30,8 +32,14 @@ class Post < ActiveRecord::Base
   end
 
   def update_rank
-   age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
-   new_rank = points + age_in_days
-   update_attribute(:rank, new_rank)
- end
+    age_in_days = (created_at - Time.new(1970,1,1)) / 1.day.seconds
+    new_rank = points + age_in_days
+    update_attribute(:rank, new_rank)
+  end
+
+
+  def create_favorite
+    Favorite.create(post: self, user: self.user)
+    FavoriteMailer.new_post(self).deliver_now
+  end
 end
