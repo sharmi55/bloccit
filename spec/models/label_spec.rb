@@ -14,16 +14,16 @@ RSpec.describe Label, type: :model do
 
 
   describe "labelings" do
-     it "allows the same label to be associated with a different topic and post" do
-       topic.labels << label
-       post.labels << label
+    it "allows the same label to be associated with a different topic and post" do
+      topic.labels << label
+      post.labels << label
 
-       topic_label = topic.labels[0]
-       post_label = post.labels[0]
+      topic_label = topic.labels[0]
+      post_label = post.labels[0]
 
-       expect(topic_label).to eql(post_label)
-     end
-   end
+      expect(topic_label).to eql(post_label)
+    end
+  end
 
   describe ".update_labels" do
     it "takes a comma delimited string and returns an array of Labels" do
