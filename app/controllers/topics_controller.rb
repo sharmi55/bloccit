@@ -33,7 +33,7 @@ class TopicsController < ApplicationController
 
 
     if @topic.save
-       flash[:notice] = "Topic was updated."
+      flash[:notice] = "Topic was updated."
       redirect_to @topic
     else
       flash.now[:alert] = "Error saving topic. Please try again."
@@ -42,21 +42,21 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-     @topic = Topic.find(params[:id])
+    @topic = Topic.find(params[:id])
 
-     if @topic.destroy
-       flash[:notice] = "\"#{@topic.name}\" was deleted successfully."
-       redirect_to action: :index
-     else
-       flash.now[:alert] = "There was an error deleting the topic."
-       render :show
-     end
-   end
+    if @topic.destroy
+      flash[:notice] = "\"#{@topic.name}\" was deleted successfully."
+      redirect_to action: :index
+    else
+      flash.now[:alert] = "There was an error deleting the topic."
+      render :show
+    end
+  end
 
 
 
   private
-   
+
   def topic_params
     params.require(:topic).permit(:name, :description, :public)
   end

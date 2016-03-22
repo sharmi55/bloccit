@@ -1,5 +1,5 @@
 require 'rails_helper'
-include RandomData
+#include RandomData
 include SessionsHelper
 
 RSpec.describe PostsController, type: :controller do
@@ -70,6 +70,23 @@ context "signed-in user" do
     create_session(my_user)
   end
 
+    describe "GET #show" do
+      it "returns http success" do
+        get :show, topic_id: my_topic.id, id: my_post.id
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders the #show view" do
+        get :show, topic_id: my_topic.id, id: my_post.id
+        expect(response).to render_template :show
+      end
+
+      it "assigns my_post to @post" do
+        get :show, topic_id: my_topic.id, id: my_post.id
+        expect(assigns(:post)).to eq(my_post)
+      end
+    end
+
     describe "GET new" do
       it "returns http success" do
         get :new, topic_id: my_topic.id
@@ -100,23 +117,6 @@ context "signed-in user" do
       it "redirects to the new post" do
         post :create, topic_id: my_topic.id, post: {title: RandomData.random_sentence, body: RandomData.random_paragraph}
         expect(response).to redirect_to [my_topic, Post.last]
-      end
-    end
-
-    describe "GET #show" do
-      it "returns http success" do
-        get :show, topic_id: my_topic.id, id: my_post.id
-        expect(response).to have_http_status(:success)
-      end
-
-      it "renders the #show view" do
-        get :show, topic_id: my_topic.id, id: my_post.id
-        expect(response).to render_template :show
-      end
-
-      it "assigns my_post to @post" do
-        get :show, topic_id: my_topic.id, id: my_post.id
-        expect(assigns(:post)).to eq(my_post)
       end
     end
 

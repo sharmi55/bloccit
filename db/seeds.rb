@@ -1,3 +1,5 @@
+require 'random_data'
+
 5.times do
    User.create!(
    name:     RandomData.random_name,
@@ -18,10 +20,10 @@ topics = Topic.all
 
 50.times do
   Post.create!(
-    user:   users.sample,
+    user:  users.sample,
     topic: topics.sample,
     title: RandomData.random_sentence,
-    body: RandomData.random_paragraph
+    body:  RandomData.random_paragraph
   )
 end
 
@@ -37,7 +39,7 @@ end
 
 user = User.first
  user.update_attributes!(
-   email: 'pompi_rai@hotmail.com', 
+   email: 'pompi_rai@hotmail.com',
    password: 'helloworld'
  )
 
