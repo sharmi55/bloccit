@@ -9,16 +9,24 @@ include RandomData
 
 
    context "unauthenticated user" do
-     it "GET index returns http success" do
-       get :index
-       expect(response).to have_http_status(:success)
+      it "GET index returns http success" do
+        get :index
+        expect(response).to have_http_status(:success)
+      end
+
+      it "GET show returns http success" do
+        get :show, id: my_comment.id
+        expect(response).to have_http_status(:success)
      end
 
-     it "GET show returns http success" do
-       get :show, id: my_comment.id
-       expect(response).to have_http_status(:success)
-     end
-   end
+      it "GET show returns a comment" do
+        get show, id: my_comment.id
+        response_hash = JSON.parse response.body
+        expect(response_hash['id']).to_eq my_comment.id
+        expect(response_hash['body']).to_eq my_comment.body
+      end
+    end
+
 
 
    context "unauthorized user" do
@@ -35,5 +43,15 @@ include RandomData
        get :show, id: my_comment.id
        expect(response).to have_http_status(:success)
      end
+
+     it "GET show returns a comment" do
+       get show, id: my_comment.id
+       response_hash = JSON.parse response.body
+       expect(response_hash['id']).to_eq my_comment      it "GET show returns a comment" do
+               get show, id: my_comment.id
+               response_hash = JSON.parse response.body
+               expect(response_hash['id']).to_eq my_comments.id
+               expect(response_hash['body']).to_eq my_comment.body.id
+       expect(response_hash['body']).to_eq my_comment.body
+     end
    end
- end
