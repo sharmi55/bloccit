@@ -1,1 +1,1 @@
-$('#post-count<%= @post.id %>').html("<%= @post.count%>");
+$('#post-<%= @post.id %>-vote').html("<strong><%= @post.points %></strong>");
