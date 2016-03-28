@@ -1,4 +1,6 @@
-<% if favorite = current_user.favorite_for(post) %>
+
+
+<!--<% if favorite = current_user.favorite_for(post) %>
   <%= link_to [post, favorite], class: 'btn btn-danger', method: :delete do %>
     <i class="glyphicon glyphicon-star-empty"> </i>&nbsp; Unfavorite
   <% end %>
@@ -7,3 +9,21 @@
     <i class="glyphicon glyphicon-star"> </i>&nbsp; Favorite
   <% end %>
 <% end %>
+-->
+
+<div class="media">
+  <%= render partial: 'votes/voter', locals: { post: post } %>
+  <div class="media-body">
+    <h4 class="media-heading">
+      <%= link_to post.title, topic_post_path(post.topic, post) %>
+      <%= render partial: "labels/list", locals: { labels: post.labels } %>
+    </h4>
+    <small>
+      <%= image_tag @user.avatar_url(48), class: "gravatar", style: "float: left; margin-top: 5px" %>
+      <%= time_ago_in_words(post.created_at) %> ago.
+      <br />
+      Submitted by <%= post.user.name %> <br>
+      <%= post.comments.count %> Comments
+    </small>
+  </div>
+</div>
