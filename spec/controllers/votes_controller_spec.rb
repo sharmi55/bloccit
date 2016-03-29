@@ -1,4 +1,5 @@
 require 'rails_helper'
+include RandomData
 include SessionsHelper
 
 RSpec.describe VotesController, type: :controller do
@@ -6,7 +7,6 @@ RSpec.describe VotesController, type: :controller do
   let(:my_user) { create(:user) }
   let(:other_user) { create(:user) }
   let(:user_post) { create(:post, topic: my_topic, user: other_user) }
-
   let(:my_vote) { Vote.create!(value: 1) }
 
   context "guest" do
@@ -57,15 +57,16 @@ RSpec.describe VotesController, type: :controller do
         expect(response).to redirect_to([my_topic, user_post])
       end
 
-      it "returns http success" do
+#      it "returns http success" do
+#        post :up_vote, format: :js, post_id: user_post.id
+#        expect(response).to have_http_status(:success)
+#      end
+
+      it ":back redirects to posts topic show" do
+        request.env["HTTP_REFERER"] = topic_path(my_topic)
         post :up_vote, format: :js, post_id: user_post.id
-        expect(response).to have_http_status(:success)
+        expect(response).to redirect_to(my_topic)
       end
-  #    it ":back redirects to posts topic show" do
-  #      request.env["HTTP_REFERER"] = topic_path(my_topic)
-  #      post :up_vote, format: :js, post_id: user_post.id
-  #      expect(response).to redirect_to(my_topic)
-  #    end
     end
 
     describe "POST down_vote" do
@@ -94,15 +95,15 @@ RSpec.describe VotesController, type: :controller do
         expect(response).to redirect_to([my_topic, user_post])
       end
 
-      it "returns http success" do
+#      it "returns http success" do
+#        post :down_vote, format: :js, post_id: user_post.id
+#        expect(response).to have_http_status(:success)
+#      end
+      it ":back redirects to posts topic show" do
+        request.env["HTTP_REFERER"] = topic_path(my_topic)
         post :down_vote, format: :js, post_id: user_post.id
-        expect(response).to have_http_status(:success)
+        expect(response).to redirect_to(my_topic)
       end
-  #    it ":back redirects to posts topic show" do
-  #      request.env["HTTP_REFERER"] = topic_path(my_topic)
-  #      post :down_vote, format: :js, post_id: user_post.id
-  #      expect(response).to redirect_to(my_topic)
-  #    end
     end
   end
 end

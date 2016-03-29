@@ -9,7 +9,7 @@ class VotesController < ApplicationController
       format.html
       format.js
     end
-   end
+  end
 
   def down_vote
     update_vote(-1)
@@ -29,6 +29,6 @@ class VotesController < ApplicationController
       @vote.update_attribute(:value, new_value)
     else
       @vote = current_user.votes.create(value: new_value, post: @post)
-   end
- end
+    end
+  end
 end
