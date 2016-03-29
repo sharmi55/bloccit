@@ -7,7 +7,7 @@ RSpec.describe Comment, type: :model do
 # haven't changed comment b/c part of assignment:
   let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
 
-
+    it { is_expected.to belong_to(:topic) }
     it { is_expected.to belong_to(:post) }
     it { is_expected.to belong_to(:user) }
     it { is_expected.to validate_presence_of(:body) }

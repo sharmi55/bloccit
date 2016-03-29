@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Topic, type: :model do
   let(:topic) { create(:topic) }
 
+  it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:posts) }
   it { is_expected.to have_many(:labelings) }
   it { is_expected.to have_many(:labels).through(:labelings) }
@@ -25,7 +26,7 @@ RSpec.describe Topic, type: :model do
       end
     end
   end
-    
+
     describe "attributes" do
       it "responds to name" do
         expect(topic).to respond_to(:name)

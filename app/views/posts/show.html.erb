@@ -30,7 +30,6 @@
         <%= render 'comments/form', comment: Comment.new, post: @post %>
       </div>
     <% end %>
-
   </div>
 
   <% if user_is_authorized_for_post?(@post) %>

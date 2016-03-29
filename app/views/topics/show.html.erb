@@ -13,6 +13,7 @@
         <%= @topic.description %>
       </p>
 
+
        <% @topic.posts.each do |post| %>
          <div class="media">
            <%= render partial: 'votes/voter', locals: { post: post } %>
